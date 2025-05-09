@@ -1,0 +1,13 @@
+.container{
+    height: 85vh;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+
+}
+
+.container h1{
+    font-size: 120px ;
+    height: auto;
+    
+}
