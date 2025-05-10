@@ -1,9 +1,13 @@
 import React from 'react'
 import './Header.css'
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 
-function Header() {
+function Header({onGenerate}) {
+
+  const location = useLocation();
+  console.log(location);
+
   return (
     <div className='Header'>
     <button>
@@ -16,7 +20,7 @@ function Header() {
             Change to Rgb
         </NavLink>
     </button>
-    <button>Generate Random color</button>
+    <button onClick={onGenerate}>Generate Random color</button>
     </div>
   )
 }
