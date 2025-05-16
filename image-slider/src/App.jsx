@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-function App({url,limit}) {
+function App({url,page=1,limit=5}) {
 
   const [images,setImages] = useState([])
   const [currentSlide,setCurrentSlide] = useState(0)
@@ -9,10 +9,12 @@ function App({url,limit}) {
   const [loading,setLoading] = useState(false);
 
 
-  async function fetchImages(url) {
+  async function fetchImages(getUrl) {
     try {
       setLoading(true);
-      const response = await fetch(url);
+      console.log(`${getUrl}?page=${page}&limit=${limit}`)
+      const response = await fetch(`${getUrl}?page=${page}&limit=${limit}`);
+      
       const data = await response.json();
 
       if(data){
@@ -20,7 +22,7 @@ function App({url,limit}) {
         setLoading(false);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error.message)
       setErrorMsg(error.message);
       setLoading(false);
     }
@@ -32,6 +34,7 @@ function App({url,limit}) {
     }
   },[url])
 
+  console.log(images);
 
   if(loading){
     return <div>Loading Data! please wait.</div>
